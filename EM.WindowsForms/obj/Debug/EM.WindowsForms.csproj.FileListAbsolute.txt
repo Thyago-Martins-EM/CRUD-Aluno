@@ -1,0 +1,10 @@
+C:\Users\EM Estagio\source\repos\EM\EM.WindowsForms\bin\Debug\EM.WindowsForms.exe.config
+C:\Users\EM Estagio\source\repos\EM\EM.WindowsForms\bin\Debug\EM.WindowsForms.exe
+C:\Users\EM Estagio\source\repos\EM\EM.WindowsForms\bin\Debug\EM.WindowsForms.pdb
+C:\Users\EM Estagio\source\repos\EM\EM.WindowsForms\obj\Debug\EM.WindowsForms.csprojAssemblyReference.cache
+C:\Users\EM Estagio\source\repos\EM\EM.WindowsForms\obj\Debug\EM.WindowsForms.CadastroAluno.resources
+C:\Users\EM Estagio\source\repos\EM\EM.WindowsForms\obj\Debug\EM.WindowsForms.Properties.Resources.resources
+C:\Users\EM Estagio\source\repos\EM\EM.WindowsForms\obj\Debug\EM.WindowsForms.csproj.GenerateResource.cache
+C:\Users\EM Estagio\source\repos\EM\EM.WindowsForms\obj\Debug\EM.WindowsForms.csproj.CoreCompileInputs.cache
+C:\Users\EM Estagio\source\repos\EM\EM.WindowsForms\obj\Debug\EM.WindowsForms.exe
+C:\Users\EM Estagio\source\repos\EM\EM.WindowsForms\obj\Debug\EM.WindowsForms.pdb
