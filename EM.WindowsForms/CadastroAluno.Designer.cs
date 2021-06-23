@@ -45,11 +45,6 @@ namespace EM.WindowsForms
             this.textoPesquisa = new System.Windows.Forms.TextBox();
             this.botaoPesquisa = new System.Windows.Forms.Button();
             this.gridViewAluno = new System.Windows.Forms.DataGridView();
-            this.Matricula = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Nome = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Sexo = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Nascimento = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.CPF = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.botaoEditar = new System.Windows.Forms.Button();
             this.botaoExcluir = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
@@ -207,55 +202,12 @@ namespace EM.WindowsForms
             // gridViewAluno
             // 
             this.gridViewAluno.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.gridViewAluno.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.Matricula,
-            this.Nome,
-            this.Sexo,
-            this.Nascimento,
-            this.CPF});
             this.gridViewAluno.Location = new System.Drawing.Point(12, 194);
             this.gridViewAluno.Name = "gridViewAluno";
             this.gridViewAluno.RowHeadersWidth = 51;
             this.gridViewAluno.RowTemplate.Height = 24;
             this.gridViewAluno.Size = new System.Drawing.Size(511, 92);
             this.gridViewAluno.TabIndex = 11;
-            // 
-            // Matricula
-            // 
-            this.Matricula.HeaderText = "Matrícula";
-            this.Matricula.MinimumWidth = 6;
-            this.Matricula.Name = "Matricula";
-            this.Matricula.Width = 125;
-            // 
-            // Nome
-            // 
-            this.Nome.HeaderText = "Nome";
-            this.Nome.MinimumWidth = 6;
-            this.Nome.Name = "Nome";
-            this.Nome.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.Nome.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.Nome.Width = 125;
-            // 
-            // Sexo
-            // 
-            this.Sexo.HeaderText = "Sexo";
-            this.Sexo.MinimumWidth = 6;
-            this.Sexo.Name = "Sexo";
-            this.Sexo.Width = 125;
-            // 
-            // Nascimento
-            // 
-            this.Nascimento.HeaderText = "Nascimento";
-            this.Nascimento.MinimumWidth = 6;
-            this.Nascimento.Name = "Nascimento";
-            this.Nascimento.Width = 125;
-            // 
-            // CPF
-            // 
-            this.CPF.HeaderText = "CPF";
-            this.CPF.MinimumWidth = 6;
-            this.CPF.Name = "CPF";
-            this.CPF.Width = 125;
             // 
             // botaoEditar
             // 
@@ -326,11 +278,6 @@ namespace EM.WindowsForms
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.ComboBox comboGenero;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Matricula;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Nome;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Sexo;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Nascimento;
-        private System.Windows.Forms.DataGridViewTextBoxColumn CPF;
         private System.Windows.Forms.MaskedTextBox maskedTextBox1;
         private System.Windows.Forms.TextBox textoCPF;
         private System.Windows.Forms.TextBox textoMatricula;
