@@ -8,3 +8,8 @@ C:\Users\EM Estagio\source\repos\EM\EM.WindowsForms\obj\Debug\EM.WindowsForms.cs
 C:\Users\EM Estagio\source\repos\EM\EM.WindowsForms\obj\Debug\EM.WindowsForms.csproj.CoreCompileInputs.cache
 C:\Users\EM Estagio\source\repos\EM\EM.WindowsForms\obj\Debug\EM.WindowsForms.exe
 C:\Users\EM Estagio\source\repos\EM\EM.WindowsForms\obj\Debug\EM.WindowsForms.pdb
+C:\Users\EM Estagio\source\repos\EM\EM.WindowsForms\bin\Debug\EM.Domain.dll
+C:\Users\EM Estagio\source\repos\EM\EM.WindowsForms\bin\Debug\EM.Repository.dll
+C:\Users\EM Estagio\source\repos\EM\EM.WindowsForms\bin\Debug\EM.Domain.pdb
+C:\Users\EM Estagio\source\repos\EM\EM.WindowsForms\bin\Debug\EM.Repository.pdb
+C:\Users\EM Estagio\source\repos\EM\EM.WindowsForms\obj\Debug\EM.WindowsForms.csproj.CopyComplete

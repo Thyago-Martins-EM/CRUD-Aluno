@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace EM.Repository
+namespace EM.Domain
 {
-    public class Class1
+    public interface IEntidade
     {
     }
 }

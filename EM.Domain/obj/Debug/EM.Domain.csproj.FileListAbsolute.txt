@@ -1,0 +1,6 @@
+C:\Users\EM Estagio\source\repos\EM\EM.Domain\bin\Debug\EM.Domain.dll
+C:\Users\EM Estagio\source\repos\EM\EM.Domain\bin\Debug\EM.Domain.pdb
+C:\Users\EM Estagio\source\repos\EM\EM.Domain\obj\Debug\EM.Domain.csprojAssemblyReference.cache
+C:\Users\EM Estagio\source\repos\EM\EM.Domain\obj\Debug\EM.Domain.csproj.CoreCompileInputs.cache
+C:\Users\EM Estagio\source\repos\EM\EM.Domain\obj\Debug\EM.Domain.dll
+C:\Users\EM Estagio\source\repos\EM\EM.Domain\obj\Debug\EM.Domain.pdb

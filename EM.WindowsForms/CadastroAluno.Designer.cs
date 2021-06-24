@@ -29,6 +29,7 @@ namespace EM.WindowsForms
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.textoCPF = new System.Windows.Forms.TextBox();
             this.textoMatricula = new System.Windows.Forms.TextBox();
@@ -48,8 +49,10 @@ namespace EM.WindowsForms
             this.botaoEditar = new System.Windows.Forms.Button();
             this.botaoExcluir = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
+            this.bindingSource1 = new System.Windows.Forms.BindingSource(this.components);
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gridViewAluno)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bindingSource1)).BeginInit();
             this.SuspendLayout();
             // 
             // groupBox1
@@ -201,7 +204,9 @@ namespace EM.WindowsForms
             // 
             // gridViewAluno
             // 
+            this.gridViewAluno.AutoGenerateColumns = false;
             this.gridViewAluno.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.gridViewAluno.DataSource = this.bindingSource1;
             this.gridViewAluno.Location = new System.Drawing.Point(12, 194);
             this.gridViewAluno.Name = "gridViewAluno";
             this.gridViewAluno.RowHeadersWidth = 51;
@@ -255,6 +260,7 @@ namespace EM.WindowsForms
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gridViewAluno)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bindingSource1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -281,6 +287,7 @@ namespace EM.WindowsForms
         private System.Windows.Forms.MaskedTextBox maskedTextBox1;
         private System.Windows.Forms.TextBox textoCPF;
         private System.Windows.Forms.TextBox textoMatricula;
+        private System.Windows.Forms.BindingSource bindingSource1;
     }
 }
 

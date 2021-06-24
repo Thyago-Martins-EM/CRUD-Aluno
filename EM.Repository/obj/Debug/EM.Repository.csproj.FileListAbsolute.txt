@@ -1,0 +1,9 @@
+C:\Users\EM Estagio\source\repos\EM\EM.Repository\bin\Debug\EM.Repository.dll
+C:\Users\EM Estagio\source\repos\EM\EM.Repository\bin\Debug\EM.Repository.pdb
+C:\Users\EM Estagio\source\repos\EM\EM.Repository\bin\Debug\EM.Domain.dll
+C:\Users\EM Estagio\source\repos\EM\EM.Repository\bin\Debug\EM.Domain.pdb
+C:\Users\EM Estagio\source\repos\EM\EM.Repository\obj\Debug\EM.Repository.csprojAssemblyReference.cache
+C:\Users\EM Estagio\source\repos\EM\EM.Repository\obj\Debug\EM.Repository.csproj.CoreCompileInputs.cache
+C:\Users\EM Estagio\source\repos\EM\EM.Repository\obj\Debug\EM.Repository.csproj.CopyComplete
+C:\Users\EM Estagio\source\repos\EM\EM.Repository\obj\Debug\EM.Repository.dll
+C:\Users\EM Estagio\source\repos\EM\EM.Repository\obj\Debug\EM.Repository.pdb
