@@ -7,7 +7,16 @@ using EM.Domain;
 
 namespace EM.Repository
 {
-    public class RepositorioAluno <Aluno>
+    public class RepositorioAluno : RepositorioAbstrato<Aluno>
     {
+        public Aluno GetByMatricula(int matricula)
+        {
+            return;
+        }
+
+        public IEnumerable<Aluno> GetByContendoNoNome(string parteDoNome)
+        {
+            return ;
+        }
     }
 }
