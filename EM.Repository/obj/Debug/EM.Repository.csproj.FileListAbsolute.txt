@@ -7,3 +7,8 @@ C:\Users\EM Estagio\source\repos\EM\EM.Repository\obj\Debug\EM.Repository.csproj
 C:\Users\EM Estagio\source\repos\EM\EM.Repository\obj\Debug\EM.Repository.csproj.CopyComplete
 C:\Users\EM Estagio\source\repos\EM\EM.Repository\obj\Debug\EM.Repository.dll
 C:\Users\EM Estagio\source\repos\EM\EM.Repository\obj\Debug\EM.Repository.pdb
+C:\Users\EM Estagio\source\repos\EM\EM.Repository\bin\Debug\FirebirdSql.Data.FirebirdClient.dll
+C:\Users\EM Estagio\source\repos\EM\EM.Repository\bin\Debug\System.Runtime.CompilerServices.Unsafe.dll
+C:\Users\EM Estagio\source\repos\EM\EM.Repository\bin\Debug\System.Threading.Tasks.Extensions.dll
+C:\Users\EM Estagio\source\repos\EM\EM.Repository\bin\Debug\System.Runtime.CompilerServices.Unsafe.xml
+C:\Users\EM Estagio\source\repos\EM\EM.Repository\bin\Debug\System.Threading.Tasks.Extensions.xml

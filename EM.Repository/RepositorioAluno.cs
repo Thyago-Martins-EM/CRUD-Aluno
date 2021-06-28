@@ -11,12 +11,12 @@ namespace EM.Repository
     {
         public Aluno GetByMatricula(int matricula)
         {
-            return;
+            return null;
         }
 
         public IEnumerable<Aluno> GetByContendoNoNome(string parteDoNome)
         {
-            return ;
+            return null;
         }
     }
 }

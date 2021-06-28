@@ -13,3 +13,8 @@ C:\Users\EM Estagio\source\repos\EM\EM.WindowsForms\bin\Debug\EM.Repository.dll
 C:\Users\EM Estagio\source\repos\EM\EM.WindowsForms\bin\Debug\EM.Domain.pdb
 C:\Users\EM Estagio\source\repos\EM\EM.WindowsForms\bin\Debug\EM.Repository.pdb
 C:\Users\EM Estagio\source\repos\EM\EM.WindowsForms\obj\Debug\EM.WindowsForms.csproj.CopyComplete
+C:\Users\EM Estagio\source\repos\EM\EM.WindowsForms\bin\Debug\FirebirdSql.Data.FirebirdClient.dll
+C:\Users\EM Estagio\source\repos\EM\EM.WindowsForms\bin\Debug\System.Runtime.CompilerServices.Unsafe.dll
+C:\Users\EM Estagio\source\repos\EM\EM.WindowsForms\bin\Debug\System.Threading.Tasks.Extensions.dll
+C:\Users\EM Estagio\source\repos\EM\EM.WindowsForms\bin\Debug\System.Runtime.CompilerServices.Unsafe.xml
+C:\Users\EM Estagio\source\repos\EM\EM.WindowsForms\bin\Debug\System.Threading.Tasks.Extensions.xml

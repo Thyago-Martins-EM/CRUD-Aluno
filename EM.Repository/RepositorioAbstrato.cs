@@ -28,16 +28,10 @@ namespace EM.Repository
             return null;
         }
 
-        public IEnumerable<T> Get(Expression<Func<T, bool>> predicate)
-        {
-            if (predicate is null)
-            {
-                throw new ArgumentNullException(nameof(predicate));
-            }
-            else
-            {
-                return null;
-            }
+        public IEnumerable<T> Get(Expression<Func<T, bool> > predicate)
+        {   
+
+            return null;
 
         }
         

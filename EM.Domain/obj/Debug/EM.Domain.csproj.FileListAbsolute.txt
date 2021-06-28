@@ -4,3 +4,9 @@ C:\Users\EM Estagio\source\repos\EM\EM.Domain\obj\Debug\EM.Domain.csprojAssembly
 C:\Users\EM Estagio\source\repos\EM\EM.Domain\obj\Debug\EM.Domain.csproj.CoreCompileInputs.cache
 C:\Users\EM Estagio\source\repos\EM\EM.Domain\obj\Debug\EM.Domain.dll
 C:\Users\EM Estagio\source\repos\EM\EM.Domain\obj\Debug\EM.Domain.pdb
+C:\Users\EM Estagio\source\repos\EM\EM.Domain\bin\Debug\FirebirdSql.Data.FirebirdClient.dll
+C:\Users\EM Estagio\source\repos\EM\EM.Domain\bin\Debug\System.Runtime.CompilerServices.Unsafe.dll
+C:\Users\EM Estagio\source\repos\EM\EM.Domain\bin\Debug\System.Threading.Tasks.Extensions.dll
+C:\Users\EM Estagio\source\repos\EM\EM.Domain\bin\Debug\System.Runtime.CompilerServices.Unsafe.xml
+C:\Users\EM Estagio\source\repos\EM\EM.Domain\bin\Debug\System.Threading.Tasks.Extensions.xml
+C:\Users\EM Estagio\source\repos\EM\EM.Domain\obj\Debug\EM.Domain.csproj.CopyComplete

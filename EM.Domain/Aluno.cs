@@ -1,8 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace EM.Domain
 {
@@ -18,20 +15,22 @@ namespace EM.Domain
         {
             return obj is Aluno aluno &&
                    Matricula == aluno.Matricula &&
-                   Nome == aluno.Nome;
+                   Nome == aluno.Nome &&
+                   CPF == aluno.CPF &&
+                   Nascimento == aluno.Nascimento &&
+                   EqualityComparer<EnumeradoSexo>.Default.Equals(Sexo, aluno.Sexo);
         }
 
         public override int GetHashCode()
         {
-            int hashCode = 154074879;
-            hashCode = hashCode * -1521134295 + Matricula.GetHashCode();
-            hashCode = hashCode * -1521134295 + EqualityComparer<string>.Default.GetHashCode(Nome);
+            int hashCode = 17;
+            hashCode *= Matricula.GetHashCode();
             return hashCode;
         }
 
-        public string ToString()
+        public override string ToString()
         {
-            return null;
+            return this.Nome;
         }
 
     }
