@@ -4,15 +4,14 @@ using System.Linq;
 using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
+using FirebirdSql.Data.FirebirdClient;
 using EM.Domain;
+using System.Configuration;
 
 namespace EM.Repository
 {
     public abstract class RepositorioAbstrato<T> where T : IEntidade
     {
-
-
-
         public void Add(T objeto)
         {
 
