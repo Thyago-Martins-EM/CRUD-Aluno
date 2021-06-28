@@ -10,6 +10,9 @@ namespace EM.Repository
 {
     public abstract class RepositorioAbstrato<T> where T : IEntidade
     {
+
+
+
         public void Add(T objeto)
         {
 
