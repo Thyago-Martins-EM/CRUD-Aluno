@@ -12,3 +12,12 @@ C:\Users\EM Estagio\source\repos\EM\EM.Repository\bin\Debug\System.Runtime.Compi
 C:\Users\EM Estagio\source\repos\EM\EM.Repository\bin\Debug\System.Threading.Tasks.Extensions.dll
 C:\Users\EM Estagio\source\repos\EM\EM.Repository\bin\Debug\System.Runtime.CompilerServices.Unsafe.xml
 C:\Users\EM Estagio\source\repos\EM\EM.Repository\bin\Debug\System.Threading.Tasks.Extensions.xml
+C:\Users\EM Estagio\source\repos\EM\EM.Repository\bin\Debug\EM.Repository.dll.config
+C:\Users\EM Estagio\source\repos\EM\EM.Repository\bin\Debug\System.Configuration.ConfigurationManager.dll
+C:\Users\EM Estagio\source\repos\EM\EM.Repository\bin\Debug\System.Security.AccessControl.dll
+C:\Users\EM Estagio\source\repos\EM\EM.Repository\bin\Debug\System.Security.Permissions.dll
+C:\Users\EM Estagio\source\repos\EM\EM.Repository\bin\Debug\System.Security.Principal.Windows.dll
+C:\Users\EM Estagio\source\repos\EM\EM.Repository\bin\Debug\System.Configuration.ConfigurationManager.xml
+C:\Users\EM Estagio\source\repos\EM\EM.Repository\bin\Debug\System.Security.AccessControl.xml
+C:\Users\EM Estagio\source\repos\EM\EM.Repository\bin\Debug\System.Security.Permissions.xml
+C:\Users\EM Estagio\source\repos\EM\EM.Repository\bin\Debug\System.Security.Principal.Windows.xml

@@ -8,11 +8,15 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using EM.Domain;
+using EM.Repository;
 
 namespace EM.WindowsForms
 {
     public partial class CadastroAluno : Form
     {
+        private Aluno objeto;
+
         public CadastroAluno()
         {
             InitializeComponent();
@@ -35,6 +39,11 @@ namespace EM.WindowsForms
             {
                 e.Handled = true;
             }
+        }
+
+        private void botaoAdicionar_Click(object sender, EventArgs e)
+        {
+            new RepositorioAluno().Add(objeto);
         }
     }
 }
