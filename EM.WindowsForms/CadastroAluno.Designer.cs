@@ -190,6 +190,7 @@ namespace EM.WindowsForms
             this.botaoLimpar.TabIndex = 5;
             this.botaoLimpar.Text = "Limpar";
             this.botaoLimpar.UseVisualStyleBackColor = true;
+            this.botaoLimpar.Click += new System.EventHandler(this.botaoLimpar_Click);
             // 
             // textoNome
             // 
@@ -218,6 +219,7 @@ namespace EM.WindowsForms
             this.botaoPesquisa.TabIndex = 8;
             this.botaoPesquisa.Text = "Pesquisar";
             this.botaoPesquisa.UseVisualStyleBackColor = true;
+            this.botaoPesquisa.Click += new System.EventHandler(this.botaoPesquisa_Click);
             // 
             // gridViewAluno
             // 
@@ -239,6 +241,7 @@ namespace EM.WindowsForms
             this.botaoEditar.TabIndex = 9;
             this.botaoEditar.Text = "Editar";
             this.botaoEditar.UseVisualStyleBackColor = true;
+            this.botaoEditar.Click += new System.EventHandler(this.botaoEditar_Click);
             // 
             // botaoExcluir
             // 
@@ -249,6 +252,7 @@ namespace EM.WindowsForms
             this.botaoExcluir.TabIndex = 10;
             this.botaoExcluir.Text = "Excluir";
             this.botaoExcluir.UseVisualStyleBackColor = true;
+            this.botaoExcluir.Click += new System.EventHandler(this.botaoExcluir_Click);
             // 
             // label1
             // 

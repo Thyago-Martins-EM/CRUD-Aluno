@@ -51,7 +51,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Aluno.cs" />
-    <Compile Include="EnumeradoSexo.cs" />
+    <Compile Include="EnumeradorSexo.cs" />
     <Compile Include="IEntidade.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

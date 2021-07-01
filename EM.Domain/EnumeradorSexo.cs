@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace EM.Domain
 {
-    public class EnumeradoSexo
+    public enum EnumeradorSexo
     {
-        public int Masculino = 0;
-        public int Feminino = 1;
+        Masculino = 0,
+         Feminino = 1
     }
 }

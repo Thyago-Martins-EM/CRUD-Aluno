@@ -12,25 +12,8 @@ namespace EM.Repository
     {
         public FbConnection GetConexao()
         {
-            string strConn = ConfigurationManager.ConnectionStrings["Connection"].ToString();
+            string strConn = @"DataSource=localhost; Port=3050; Database=D:\Bancos\CRUD_EM.FDB; username= SYSDBA; password = masterkey";
             return new FbConnection(strConn);
-        }
-
-        public void Conectar()
-        {
-            try
-            {
-                GetConexao().Open();
-                Console.WriteLine("Conexão efetuada");
-            }
-            catch (Exception err)
-            {
-                Console.WriteLine(err);
-            }
-            finally
-            {
-                GetConexao().Close();
-            }
-        }
+        }        
     }
 }

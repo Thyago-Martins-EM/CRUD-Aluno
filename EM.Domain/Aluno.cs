@@ -9,7 +9,7 @@ namespace EM.Domain
         public string Nome;
         public string CPF;
         public DateTime Nascimento;
-        public EnumeradoSexo Sexo;
+        public EnumeradorSexo Sexo;
 
         public override bool Equals(object obj)
         {
@@ -18,7 +18,7 @@ namespace EM.Domain
                    Nome == aluno.Nome &&
                    CPF == aluno.CPF &&
                    Nascimento == aluno.Nascimento &&
-                   EqualityComparer<EnumeradoSexo>.Default.Equals(Sexo, aluno.Sexo);
+                   EqualityComparer<EnumeradorSexo>.Default.Equals(Sexo, aluno.Sexo);
         }
 
         public override int GetHashCode()
@@ -30,7 +30,9 @@ namespace EM.Domain
 
         public override string ToString()
         {
-            return this.Nome;
+
+            string aluno = $"({this.Matricula},'{this.Nome}',{this.Sexo},'{this.Nascimento}','{this.CPF}')";
+            return aluno;
         }
 
     }

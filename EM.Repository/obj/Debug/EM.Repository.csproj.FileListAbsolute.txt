@@ -21,3 +21,7 @@ C:\Users\EM Estagio\source\repos\EM\EM.Repository\bin\Debug\System.Configuration
 C:\Users\EM Estagio\source\repos\EM\EM.Repository\bin\Debug\System.Security.AccessControl.xml
 C:\Users\EM Estagio\source\repos\EM\EM.Repository\bin\Debug\System.Security.Permissions.xml
 C:\Users\EM Estagio\source\repos\EM\EM.Repository\bin\Debug\System.Security.Principal.Windows.xml
+C:\Users\EM Estagio\source\repos\EM\EM.Repository\bin\Debug\linq2db.dll
+C:\Users\EM Estagio\source\repos\EM\EM.Repository\bin\Debug\Microsoft.Bcl.AsyncInterfaces.dll
+C:\Users\EM Estagio\source\repos\EM\EM.Repository\bin\Debug\linq2db.xml
+C:\Users\EM Estagio\source\repos\EM\EM.Repository\bin\Debug\Microsoft.Bcl.AsyncInterfaces.xml
