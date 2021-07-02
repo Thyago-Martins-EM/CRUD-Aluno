@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using EM.Domain;
 using FirebirdSql.Data.FirebirdClient;
@@ -54,7 +55,15 @@ namespace EM.Repository
                     conexaFB.Open();
                     string fSQL = $"SELECT * FROM ALUNO;";
                     FbCommand cmd = new FbCommand(fSQL, conexaFB);
-                    cmd.ExecuteNonQuery();
+                    FbDataAdapter fbData = new FbDataAdapter(cmd);
+                    DataTable dt = new DataTable();
+                    fbData.Fill(dt);
+                    /*IEnumerable<Aluno> alunos;
+                    foreach(DataRow dataRow in dt.Rows)
+                    {
+                        alunos = dt.AsEnumerable();
+                    }*/
+                    return (IEnumerable<Aluno>)dt; //alunos;
                 }
                 catch (FbException fbErr)
                 {
@@ -65,8 +74,6 @@ namespace EM.Repository
                     conexaFB.Close();
                 }
             }
-
-            return base.GetAll();
         }
 
         public Aluno GetByMatricula(int matricula)

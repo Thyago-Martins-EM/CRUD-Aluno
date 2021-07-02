@@ -10,11 +10,14 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using EM.Domain;
 using EM.Repository;
+using FirebirdSql.Data.FirebirdClient;
 
 namespace EM.WindowsForms
 {
     public partial class CadastroAluno : Form
     {
+        BindingSource bs = new BindingSource();
+        Conexao conexao = new Conexao();
         public CadastroAluno()
         {
             InitializeComponent();
@@ -25,6 +28,38 @@ namespace EM.WindowsForms
             //EnumeradorSexo sexo = new EnumeradorSexo();
             comboGenero.Items.Add(EnumeradorSexo.Masculino);
             comboGenero.Items.Add(EnumeradorSexo.Feminino);
+
+            
+
+            using (FbConnection conexaFB = conexao.GetConexao())
+            {
+                try
+                {
+                    conexaFB.Open();
+                    string fSQL = $"SELECT * FROM ALUNO;";
+                    FbCommand cmd = new FbCommand(fSQL, conexaFB);
+                    FbDataAdapter fbData = new FbDataAdapter(cmd);
+                    DataTable dt = new DataTable();
+                    fbData.Fill(dt);
+                    /*IEnumerable<Aluno> alunos;
+                    foreach(DataRow dataRow in dt.Rows)
+                    {
+                        alunos = dt.AsEnumerable();
+                    }*/
+                    //return dt; //alunos;
+                    bs.DataSource = dt;
+                    bs.DataMember = dt.TableName;
+                    gridViewAluno.DataSource = bs;
+                }
+                catch (FbException fbErr)
+                {
+                    throw fbErr;
+                }
+                finally
+                {
+                    conexaFB.Close();
+                }
+            }
         }
 
         private void maskedTextBox1_MouseClick(object sender, MouseEventArgs e)
