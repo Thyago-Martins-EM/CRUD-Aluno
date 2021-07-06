@@ -16,50 +16,21 @@ namespace EM.WindowsForms
 {
     public partial class CadastroAluno : Form
     {
-        BindingSource bs = new BindingSource();
-        Conexao conexao = new Conexao();
+
+        private bool edicao = false;
+        private int setMatricula = 0;
+        private Aluno aluno = new Aluno();
+
         public CadastroAluno()
         {
-            InitializeComponent();
+            InitializeComponent();            
         }
 
         private void Form1_Load(object sender, EventArgs e)
-        {
-            //EnumeradorSexo sexo = new EnumeradorSexo();
+        {            
             comboGenero.Items.Add(EnumeradorSexo.Masculino);
             comboGenero.Items.Add(EnumeradorSexo.Feminino);
-
-            
-
-            using (FbConnection conexaFB = conexao.GetConexao())
-            {
-                try
-                {
-                    conexaFB.Open();
-                    string fSQL = $"SELECT * FROM ALUNO;";
-                    FbCommand cmd = new FbCommand(fSQL, conexaFB);
-                    FbDataAdapter fbData = new FbDataAdapter(cmd);
-                    DataTable dt = new DataTable();
-                    fbData.Fill(dt);
-                    /*IEnumerable<Aluno> alunos;
-                    foreach(DataRow dataRow in dt.Rows)
-                    {
-                        alunos = dt.AsEnumerable();
-                    }*/
-                    //return dt; //alunos;
-                    bs.DataSource = dt;
-                    bs.DataMember = dt.TableName;
-                    gridViewAluno.DataSource = bs;
-                }
-                catch (FbException fbErr)
-                {
-                    throw fbErr;
-                }
-                finally
-                {
-                    conexaFB.Close();
-                }
-            }
+            CarregaDadosGridView();
         }
 
         private void maskedTextBox1_MouseClick(object sender, MouseEventArgs e)
@@ -77,21 +48,38 @@ namespace EM.WindowsForms
 
         private void botaoAdicionar_Click(object sender, EventArgs e)
         {
-
-            Aluno aluno = new Aluno()
+            if (edicao)
             {
-                Matricula = Convert.ToInt32(textoMatricula.Text),
-                Nome = textoNome.Text,
-                Sexo = (EnumeradorSexo)comboGenero.SelectedIndex,
-                Nascimento = Convert.ToDateTime(maskedTextBox1.Text),
-                CPF = textoCPF.Text,
-            };
-            new RepositorioAluno().Add(aluno);            
+                Aluno aluno = new Aluno()
+                {
+                    Matricula = Convert.ToInt32(textoMatricula.Text),
+                    Nome = textoNome.Text,
+                    Sexo = (EnumeradorSexo)comboGenero.SelectedIndex,
+                    Nascimento = Convert.ToDateTime(maskedTextBox1.Text),
+                    CPF = textoCPF.Text,
+                };
+                new RepositorioAluno().Update(aluno);                
+            }
+            if (!edicao)
+            {
+                Aluno aluno = new Aluno()
+                {
+                    Matricula = Convert.ToInt32(textoMatricula.Text),
+                    Nome = textoNome.Text,
+                    Sexo = (EnumeradorSexo)comboGenero.SelectedIndex,
+                    Nascimento = Convert.ToDateTime(maskedTextBox1.Text),
+                    CPF = textoCPF.Text,
+                };
+                new RepositorioAluno().Add(aluno);                
+            }
+            LimparDados();
+            CarregaDadosGridView();
+            edicao = false;
         }
 
         private void botaoLimpar_Click(object sender, EventArgs e)
         {
-
+            LimparDados();
         }
 
         private void botaoPesquisa_Click(object sender, EventArgs e)
@@ -101,12 +89,78 @@ namespace EM.WindowsForms
 
         private void botaoEditar_Click(object sender, EventArgs e)
         {
+            edicao = true;
+            AlteraBotoesCampos(edicao);
+            PreencheFormulario(this.aluno);
+        }
+
+        private void BotaoExcluir_Click(object sender, EventArgs e)
+        {
+            this.aluno = new RepositorioAluno().GetByMatricula(setMatricula);
+            RemoverAluno form = new RemoverAluno(this.aluno);
+            form.ShowDialog();
+            CarregaDadosGridView();
+        }
+
+        public void CarregaDadosGridView()
+        {
+            IEnumerable<Aluno> enumerable = new RepositorioAluno().GetAll();
+
+            alunoBindingSource.DataSource = enumerable;
+            gridViewAluno.DataSource = alunoBindingSource;
+        }
+
+        private void GridViewAluno_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            setMatricula = Convert.ToInt32(gridViewAluno.Rows[e.RowIndex].Cells[0].Value);
+            this.aluno = new RepositorioAluno().GetByMatricula(setMatricula);
+        }
+
+        private void LimparDados()
+        {
+            foreach (Control myControl in groupBox1.Controls)
+            {
+                if (myControl as TextBox == null)
+                { }
+                else
+                {
+                    ((TextBox)myControl).Text = "";
+                }
+            }
+            comboGenero.SelectedIndex = -1;
+            maskedTextBox1.Text = "";
+            textoMatricula.Focus();            
+        }
+
+        private bool ValidaDadosAluno(Aluno aluno)
+        {
+            return false;
+        }
+
+        private void validaCPF(string cpf)
+        {
 
         }
 
-        private void botaoExcluir_Click(object sender, EventArgs e)
+        private void AlteraBotoesCampos(bool edicao)
         {
+            if (edicao)
+            {
+                label1.Text = "Editando Aluno";
+                botaoAdicionar.Text = "Modificar";
+                botaoLimpar.Text = "Cancelar";
+                textoMatricula.Enabled = false;
+                textoNome.Focus();
+            }
+        }
 
+        private void PreencheFormulario(Aluno aluno)
+        {
+            textoMatricula.Text = Convert.ToString(aluno.Matricula);
+            textoNome.Text = aluno.Nome;
+            comboGenero.SelectedIndex = Convert.ToInt32(aluno.Sexo);
+            maskedTextBox1.Text = Convert.ToString(aluno.Nascimento);
+            textoCPF.Text = aluno.CPF;
         }
     }
 }

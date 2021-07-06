@@ -28,10 +28,10 @@ namespace EM.Repository
             return null;
         }
 
-        public IEnumerable<T> Get(Expression<Func<T, bool> > predicate)
+        public virtual IEnumerable<T> Get(Expression<Func<T, bool> > predicate)
         {   
 
-            return null;
+            return Get(predicate);
 
         }
         

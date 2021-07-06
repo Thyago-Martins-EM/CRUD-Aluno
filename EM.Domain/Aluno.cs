@@ -5,11 +5,12 @@ namespace EM.Domain
 {
     public class Aluno : IEntidade
     {
-        public int Matricula;
-        public string Nome;
-        public string CPF;
-        public DateTime Nascimento;
-        public EnumeradorSexo Sexo;
+        public int Matricula { get; set; }
+        public string Nome { get; set; }
+        public string CPF { get; set; }
+        public DateTime Nascimento { get; set; }
+        public EnumeradorSexo Sexo { get; set; }
+
 
         public override bool Equals(object obj)
         {

@@ -1,0 +1,79 @@
+{
+  "format": 1,
+  "restore": {
+    "C:\\Users\\EM Estagio\\source\\repos\\EM\\EM.Domain.Testes\\EM.Domain.Testes.csproj": {}
+  },
+  "projects": {
+    "C:\\Users\\EM Estagio\\source\\repos\\EM\\EM.Domain.Testes\\EM.Domain.Testes.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\Users\\EM Estagio\\source\\repos\\EM\\EM.Domain.Testes\\EM.Domain.Testes.csproj",
+        "projectName": "EM.Domain.Testes",
+        "projectPath": "C:\\Users\\EM Estagio\\source\\repos\\EM\\EM.Domain.Testes\\EM.Domain.Testes.csproj",
+        "packagesPath": "C:\\Users\\EM Estagio\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\EM Estagio\\source\\repos\\EM\\EM.Domain.Testes\\obj\\",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "C:\\Users\\EM Estagio\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net472"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net472": {
+            "targetAlias": "net472",
+            "projectReferences": {
+              "C:\\Users\\EM Estagio\\source\\repos\\EM\\EM.Domain\\EM.Domain.csproj": {
+                "projectPath": "C:\\Users\\EM Estagio\\source\\repos\\EM\\EM.Domain\\EM.Domain.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net472": {
+          "targetAlias": "net472",
+          "dependencies": {
+            "FluentAssertions": {
+              "target": "Package",
+              "version": "[5.10.3, )"
+            },
+            "Microsoft.NET.Test.Sdk": {
+              "target": "Package",
+              "version": "[16.5.0, )"
+            },
+            "SpecFlow.Plus.LivingDocPlugin": {
+              "target": "Package",
+              "version": "[3.9.5, )"
+            },
+            "SpecRun.SpecFlow": {
+              "target": "Package",
+              "version": "[3.9.7, )"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.102\\RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "C:\\Users\\EM Estagio\\source\\repos\\EM\\EM.Domain\\EM.Domain.csproj": {
+      "restore": {
+        "projectUniqueName": "C:\\Users\\EM Estagio\\source\\repos\\EM\\EM.Domain\\EM.Domain.csproj",
+        "projectName": "EM.Domain",
+        "projectPath": "C:\\Users\\EM Estagio\\source\\repos\\EM\\EM.Domain\\EM.Domain.csproj"
+      },
+      "frameworks": {
+        "net472": {}
+      }
+    }
+  }
+}
