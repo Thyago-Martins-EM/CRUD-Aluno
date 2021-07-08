@@ -5,9 +5,56 @@ namespace EM.Domain
 {
     public class Aluno : IEntidade
     {
-        public int Matricula { get; set; }
-        public string Nome { get; set; }
-        public string CPF { get; set; }
+        private int _matricula;
+        private string _nome;
+        private string _cpf;
+        private DateTime _nascimento;
+
+        public int Matricula {
+            get => _matricula;
+            set
+            {                
+                if (value != 0)
+                {
+                    _matricula = value;
+                }
+                else
+                {
+                    throw new Exception("O campo de matricula não pode está em branco");
+                }
+            }
+        }
+        public string Nome 
+        { 
+            get => _nome;
+            set 
+            {
+                if (value != "") 
+                {
+                    _nome = value;
+                }
+                else
+                {
+                    throw new Exception("O campo do nome não pode está em branco");
+                }
+            } 
+        }
+        public string CPF
+        {
+            get => _cpf;
+            set
+            {
+                //_cpf = DomainUtilitarios.ValidaCPF(cpf: value) ? value : throw new Exception("CPF não é valido");
+                if (DomainUtilitarios.ValidaCPF(value))
+                {
+                    _cpf = value;
+                }
+                else
+                {
+                    throw new Exception("O CPF informado não é valido");
+                }
+            }
+        }
         public DateTime Nascimento { get; set; }
         public EnumeradorSexo Sexo { get; set; }
 

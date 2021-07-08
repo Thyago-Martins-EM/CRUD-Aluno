@@ -53,25 +53,27 @@ namespace EM.WindowsForms
                 Aluno aluno = new Aluno()
                 {
                     Matricula = Convert.ToInt32(textoMatricula.Text),
-                    Nome = textoNome.Text,
+                    Nome = textoNome.Text.Replace("'", "''"),
                     Sexo = (EnumeradorSexo)comboGenero.SelectedIndex,
                     Nascimento = Convert.ToDateTime(maskedTextBox1.Text),
                     CPF = textoCPF.Text,
                 };
-                new RepositorioAluno().Update(aluno);                
+                new RepositorioAluno().Update(aluno);     
             }
+
             if (!edicao)
             {
                 Aluno aluno = new Aluno()
                 {
                     Matricula = Convert.ToInt32(textoMatricula.Text),
-                    Nome = textoNome.Text,
+                    Nome = textoNome.Text.Replace("'", "''"),
                     Sexo = (EnumeradorSexo)comboGenero.SelectedIndex,
                     Nascimento = Convert.ToDateTime(maskedTextBox1.Text),
                     CPF = textoCPF.Text,
                 };
-                new RepositorioAluno().Add(aluno);                
+                new RepositorioAluno().Add(aluno);                                           
             }
+
             LimparDados();
             CarregaDadosGridView();
             edicao = false;
@@ -79,27 +81,47 @@ namespace EM.WindowsForms
 
         private void botaoLimpar_Click(object sender, EventArgs e)
         {
+            AlteraBotoesCampos(edicao = false);
             LimparDados();
         }
 
         private void botaoPesquisa_Click(object sender, EventArgs e)
         {
-
+            string dados = textoPesquisa.Text;
+            alunoBindingSource.DataSource = new RepositorioAluno().GetByContendoNoNome(dados);
+            gridViewAluno.DataSource = alunoBindingSource;
         }
 
         private void botaoEditar_Click(object sender, EventArgs e)
         {
-            edicao = true;
-            AlteraBotoesCampos(edicao);
-            PreencheFormulario(this.aluno);
+
+            if(setMatricula != 0)
+            {
+                edicao = true;
+                AlteraBotoesCampos(edicao);
+                PreencheFormulario(this.aluno);
+            }
+            else
+            {
+                MessageBox.Show("Clique em algum registro para que possa editalo!");
+            }
+            
         }
 
         private void BotaoExcluir_Click(object sender, EventArgs e)
         {
-            this.aluno = new RepositorioAluno().GetByMatricula(setMatricula);
-            RemoverAluno form = new RemoverAluno(this.aluno);
-            form.ShowDialog();
-            CarregaDadosGridView();
+            if(setMatricula != 0)
+            {
+                this.aluno = new RepositorioAluno().GetByMatricula(setMatricula);
+                RemoverAluno form = new RemoverAluno(this.aluno);
+                form.ShowDialog();
+                CarregaDadosGridView();
+                //setMatricula = 0;
+            }
+            else
+            {
+                MessageBox.Show("Clique em algum registro para que possa excluílo!");
+            }
         }
 
         public void CarregaDadosGridView()
@@ -112,8 +134,16 @@ namespace EM.WindowsForms
 
         private void GridViewAluno_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-            setMatricula = Convert.ToInt32(gridViewAluno.Rows[e.RowIndex].Cells[0].Value);
-            this.aluno = new RepositorioAluno().GetByMatricula(setMatricula);
+            if(e.RowIndex == -1)
+            {
+            
+            }
+            else
+            {
+                setMatricula = Convert.ToInt32(gridViewAluno.Rows[e.RowIndex].Cells[0].Value);
+                aluno = new RepositorioAluno().GetByMatricula(setMatricula);
+            }
+            
         }
 
         private void LimparDados()
@@ -151,6 +181,15 @@ namespace EM.WindowsForms
                 botaoLimpar.Text = "Cancelar";
                 textoMatricula.Enabled = false;
                 textoNome.Focus();
+            }
+            else 
+            {
+                label1.Text = "Novo Aluno";
+                botaoAdicionar.Text = "Adicionar";
+                botaoLimpar.Text = "Limpar";
+                textoMatricula.Enabled = true;
+                textoNome.Focus();
+                setMatricula = 0;
             }
         }
 

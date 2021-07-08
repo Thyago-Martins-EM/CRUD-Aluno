@@ -17,21 +17,11 @@ namespace EM.Repository
 
             using (FbConnection conexaFB = conexao.GetConexao())
             {
-                try
-                {
-                    conexaFB.Open();
-                    string fSQL = $"INSERT INTO ALUNO VALUES ({aluno.Matricula}, '{aluno.Nome}', {sexo}, '{aluno.CPF}', '{aluno.Nascimento.ToString("yyyy/MM/dd")}');";
-                    FbCommand cmd = new FbCommand(fSQL, conexaFB);
-                    cmd.ExecuteNonQuery();
-                }
-                catch (FbException fbErr)
-                {
-                    throw fbErr;
-                }
-                finally
-                {
-                    conexaFB.Close();
-                }
+                conexaFB.Open();
+                string fSQL = $@"INSERT INTO ALUNO VALUES ({aluno.Matricula}, '{aluno.Nome}', {sexo}, '{aluno.CPF}', '{aluno.Nascimento.ToString("yyyy/MM/dd")}');";
+                FbCommand cmd = new FbCommand(fSQL, conexaFB);
+                cmd.ExecuteNonQuery();
+                conexaFB.Close();
             }
         }
 
@@ -41,22 +31,14 @@ namespace EM.Repository
 
             using (FbConnection conexaFB = conexao.GetConexao())
             {
-                try
-                {
-                    conexaFB.Open();
-                    string fSQL = $"UPDATE ALUNO SET NOME = '{aluno.Nome}', SEXO = {sexo}, CPF = '{aluno.CPF}', NASCIMENTO = '{aluno.Nascimento:yyyy/MM/dd}'" +
-                                    $"WHERE MATRICULA = {aluno.Matricula};";
-                    FbCommand cmd = new FbCommand(fSQL, conexaFB);
-                    cmd.ExecuteNonQuery();
-                }
-                catch (FbException fbErr)
-                {
-                    throw fbErr;
-                }
-                finally
-                {
-                    conexaFB.Close();
-                }
+
+                conexaFB.Open();
+                string fSQL = $"UPDATE ALUNO SET NOME = '{aluno.Nome}', SEXO = {sexo}, CPF = '{aluno.CPF}', NASCIMENTO = '{aluno.Nascimento:yyyy/MM/dd}'" +
+                                $"WHERE MATRICULA = {aluno.Matricula};";
+                FbCommand cmd = new FbCommand(fSQL, conexaFB);
+                cmd.ExecuteNonQuery();
+
+                conexaFB.Close();
             }
         }
 
@@ -65,21 +47,14 @@ namespace EM.Repository
 
             using (FbConnection conexaFB = conexao.GetConexao())
             {
-                try
-                {
-                    conexaFB.Open();
-                    string fSQL = $"DELETE FROM ALUNO WHERE MATRICULA = {aluno.Matricula};";
-                    FbCommand cmd = new FbCommand(fSQL, conexaFB);
-                    cmd.ExecuteNonQuery();
-                }
-                catch (FbException fbErr)
-                {
-                    throw fbErr;
-                }
-                finally
-                {
-                    conexaFB.Close();
-                }
+
+                conexaFB.Open();
+                string fSQL = $"DELETE FROM ALUNO WHERE MATRICULA = {aluno.Matricula};";
+                FbCommand cmd = new FbCommand(fSQL, conexaFB);
+                cmd.ExecuteNonQuery();
+
+                conexaFB.Close();
+
             }
         }
 
@@ -88,85 +63,53 @@ namespace EM.Repository
 
             using (FbConnection conexaFB = conexao.GetConexao())
             {
-                try
+
+                conexaFB.Open();
+                string fSQL = $"SELECT * FROM ALUNO;";
+                FbCommand cmd = new FbCommand(fSQL, conexaFB);
+                FbDataReader fbData = cmd.ExecuteReader();
+                
+                List<Aluno> alunos = new List<Aluno>();
+
+                while (fbData.Read())
                 {
-                    conexaFB.Open();
-                    string fSQL = $"SELECT * FROM ALUNO;";
-                    FbCommand cmd = new FbCommand(fSQL, conexaFB);
-                    FbDataReader fbData = cmd.ExecuteReader();                   
-
-                    List<Aluno> alunos = new List<Aluno>();
-
-                    while (fbData.Read())
+                    Aluno aluno = new Aluno()
                     {
-                        Aluno aluno = new Aluno()
-                        {
-                            Matricula = Convert.ToInt32(fbData[0]),
-                            Nome = fbData[1].ToString(),
-                            CPF = fbData[3].ToString(),
-                            Nascimento = Convert.ToDateTime(fbData[4]),
-                            Sexo = (EnumeradorSexo)Convert.ToInt32(fbData[2])
-                        };
+                        Matricula = Convert.ToInt32(fbData[0]),
+                        Nome = fbData[1].ToString(),
+                        CPF = fbData[3].ToString(),
+                        Nascimento = Convert.ToDateTime(fbData[4]),
+                        Sexo = (EnumeradorSexo)Convert.ToInt32(fbData[2])
+                    };
 
-                        alunos.Add(aluno);
-                    }
-                    return alunos;
+                     alunos.Add(aluno);
                 }
-                catch (FbException fbErr)
-                {
-                    throw fbErr;
-                }
-                finally
-                {
-                    conexaFB.Close();
-                }
+                conexaFB.Close();
+                return alunos;
+
+                    
             }
         }
 
         public override IEnumerable<Aluno> Get(Expression<Func<Aluno, bool>> predicate)
         {
-            var alunos = GetAll().AsQueryable();
+            var listaAlunos = GetAll().AsQueryable().Where(predicate).ToList();
 
-            alunos.Where(predicate);
-            return alunos;
+            return listaAlunos;
         }
 
         public Aluno GetByMatricula(int matricula)
         {
-            using (FbConnection conexaFB = conexao.GetConexao())
-            {
-                try
-                {
-                    conexaFB.Open();
-                    string fSQL = $"SELECT * FROM ALUNO WHERE MATRICULA = {matricula};";
-                    FbCommand cmd = new FbCommand(fSQL, conexaFB);
-                    FbDataReader fbData = cmd.ExecuteReader();
-                    Aluno aluno = new Aluno();
-                    while (fbData.Read())
-                    {
-                        aluno.Matricula = Convert.ToInt32(fbData[0]);
-                        aluno.Nome = fbData[1].ToString();
-                        aluno.CPF = fbData[3].ToString();
-                        aluno.Nascimento = Convert.ToDateTime(fbData[4]);
-                        aluno.Sexo = (EnumeradorSexo)Convert.ToInt32(fbData[2]);
-                    }
-                    return aluno;
-                }
-                catch (FbException fbErr)
-                {
-                    throw fbErr;
-                }
-                finally
-                {
-                    conexaFB.Close();
-                }
-            }
+
+            return Get(aluno => aluno.Matricula == matricula).First();
+
         }
 
         public IEnumerable<Aluno> GetByContendoNoNome(string parteDoNome)
         {
             
-            return null;
+            return Get(aluno => aluno.Nome.ToUpper().Contains(parteDoNome.ToUpper()));
+
         }
 
         public void Teste()
