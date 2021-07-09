@@ -53,12 +53,16 @@ namespace EM.Domain
 			return true;
 		}
 	
-		/*
-		public static bool ValidaMatricula(int matricula)
+		
+		public static bool ValidaNascimento(DateTime nascimento)
         {
-			if(matricula )
-			return true;
+			if (nascimento < DateTime.Now)
+			{
+				return true;
+			}
+			else
+				return false;			
         }
-		*/
+		
     }
 }

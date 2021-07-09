@@ -23,7 +23,16 @@ namespace EM.WindowsForms
 
         public CadastroAluno()
         {
-            InitializeComponent();            
+            InitializeComponent();
+            Application.ThreadException += new System.Threading.ThreadExceptionEventHandler(Application_ThreadException);
+        }
+
+        void Application_ThreadException(object sender, System.Threading.ThreadExceptionEventArgs e)
+        {
+            StringBuilder sb = new StringBuilder();
+            sb.AppendLine("Trapped unhandled exception");
+            sb.AppendLine(e.Exception.ToString());
+            MessageBox.Show(sb.ToString());
         }
 
         private void Form1_Load(object sender, EventArgs e)
@@ -48,41 +57,53 @@ namespace EM.WindowsForms
 
         private void botaoAdicionar_Click(object sender, EventArgs e)
         {
-            if (edicao)
+            try
             {
-                Aluno aluno = new Aluno()
+                if (edicao)
                 {
-                    Matricula = Convert.ToInt32(textoMatricula.Text),
-                    Nome = textoNome.Text.Replace("'", "''"),
-                    Sexo = (EnumeradorSexo)comboGenero.SelectedIndex,
-                    Nascimento = Convert.ToDateTime(maskedTextBox1.Text),
-                    CPF = textoCPF.Text,
-                };
-                new RepositorioAluno().Update(aluno);     
-            }
+                    Aluno aluno = new Aluno()
+                    {
+                        Matricula = Convert.ToInt32(textoMatricula.Text),
+                        Nome = textoNome.Text.Replace("'", "''"),
+                        Sexo = (EnumeradorSexo)comboGenero.SelectedIndex,
+                        Nascimento = Convert.ToDateTime(maskedTextBox1.Text),
+                        CPF = textoCPF.Text,
+                    };
+                    new RepositorioAluno().Update(aluno);
+                }
 
-            if (!edicao)
+                if (!edicao)
+                {
+                    Aluno aluno = new Aluno()
+                    {
+                        Matricula = Convert.ToInt32(textoMatricula.Text),
+                        Nome = textoNome.Text.Replace("'", "''"),
+                        Sexo = (EnumeradorSexo)comboGenero.SelectedIndex,
+                        Nascimento = Convert.ToDateTime(maskedTextBox1.Text),
+                        CPF = textoCPF.Text,
+                    };
+                    new RepositorioAluno().Add(aluno);
+                }
+
+                LimparDados();
+                CarregaDadosGridView();
+                edicao = false;
+            }
+            catch (FormatException)
             {
-                Aluno aluno = new Aluno()
-                {
-                    Matricula = Convert.ToInt32(textoMatricula.Text),
-                    Nome = textoNome.Text.Replace("'", "''"),
-                    Sexo = (EnumeradorSexo)comboGenero.SelectedIndex,
-                    Nascimento = Convert.ToDateTime(maskedTextBox1.Text),
-                    CPF = textoCPF.Text,
-                };
-                new RepositorioAluno().Add(aluno);                                           
+                MessageBox.Show(("Data Informada é invalida"));
             }
-
-            LimparDados();
-            CarregaDadosGridView();
-            edicao = false;
+            catch(Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }            
         }
 
         private void botaoLimpar_Click(object sender, EventArgs e)
         {
             AlteraBotoesCampos(edicao = false);
             LimparDados();
+            throw new System.InvalidOperationException("Deu Pau...");
         }
 
         private void botaoPesquisa_Click(object sender, EventArgs e)
@@ -115,8 +136,14 @@ namespace EM.WindowsForms
                 this.aluno = new RepositorioAluno().GetByMatricula(setMatricula);
                 RemoverAluno form = new RemoverAluno(this.aluno);
                 form.ShowDialog();
+                LimparDados();
                 CarregaDadosGridView();
-                //setMatricula = 0;
+                setMatricula = 0;
+                if (edicao)
+                {
+                    edicao = false;
+                    AlteraBotoesCampos(edicao);
+                }
             }
             else
             {
@@ -143,7 +170,6 @@ namespace EM.WindowsForms
                 setMatricula = Convert.ToInt32(gridViewAluno.Rows[e.RowIndex].Cells[0].Value);
                 aluno = new RepositorioAluno().GetByMatricula(setMatricula);
             }
-            
         }
 
         private void LimparDados()
@@ -160,16 +186,6 @@ namespace EM.WindowsForms
             comboGenero.SelectedIndex = -1;
             maskedTextBox1.Text = "";
             textoMatricula.Focus();            
-        }
-
-        private bool ValidaDadosAluno(Aluno aluno)
-        {
-            return false;
-        }
-
-        private void validaCPF(string cpf)
-        {
-
         }
 
         private void AlteraBotoesCampos(bool edicao)
@@ -201,5 +217,6 @@ namespace EM.WindowsForms
             maskedTextBox1.Text = Convert.ToString(aluno.Nascimento);
             textoCPF.Text = aluno.CPF;
         }
+    
     }
 }

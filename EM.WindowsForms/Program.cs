@@ -15,17 +15,20 @@ namespace EM.WindowsForms
         [STAThread]
         static void Main()
         {
-            TrataEx trataEx = new TrataEx();
-
+            //TrataEx trataEx = new TrataEx();
+            Application.SetUnhandledExceptionMode(UnhandledExceptionMode.CatchException);
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             Application.Run(new CadastroAluno());
-            Application.ThreadException += new ThreadExceptionEventHandler(trataEx.Trata);
+            
+            //Application.ThreadException += new ThreadExceptionEventHandler(trataEx.Trata);
         }
     }
 
+    /*
     internal class TrataEx
     {
         public void Trata(object sender, ThreadExceptionEventArgs e) => MessageBox.Show("Tratando as exceções globalmente");
     }
+    */
 }

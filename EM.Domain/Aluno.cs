@@ -20,7 +20,7 @@ namespace EM.Domain
                 }
                 else
                 {
-                    throw new Exception("O campo de matricula não pode está em branco");
+                    throw new Exception("O campo de matricula não pode está em branco ou ser 0");
                 }
             }
         }
@@ -55,7 +55,16 @@ namespace EM.Domain
                 }
             }
         }
-        public DateTime Nascimento { get; set; }
+        public DateTime Nascimento { 
+            get => _nascimento; 
+            set 
+            {
+                if (DomainUtilitarios.ValidaNascimento(value))
+                    _nascimento = value;
+                else
+                    throw new Exception("Data Informada Incorreta");
+            } 
+        }
         public EnumeradorSexo Sexo { get; set; }
 
 

@@ -1,0 +1,1 @@
+https://docs.microsoft.com/pt-br/dotnet/api/system.windows.forms.application.setunhandledexceptionmode?view=net-5.0
