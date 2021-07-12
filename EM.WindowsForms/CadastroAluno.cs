@@ -24,15 +24,6 @@ namespace EM.WindowsForms
         public CadastroAluno()
         {
             InitializeComponent();
-            Application.ThreadException += new System.Threading.ThreadExceptionEventHandler(Application_ThreadException);
-        }
-
-        void Application_ThreadException(object sender, System.Threading.ThreadExceptionEventArgs e)
-        {
-            StringBuilder sb = new StringBuilder();
-            sb.AppendLine("Trapped unhandled exception");
-            sb.AppendLine(e.Exception.ToString());
-            MessageBox.Show(sb.ToString());
         }
 
         private void Form1_Load(object sender, EventArgs e)
@@ -82,21 +73,30 @@ namespace EM.WindowsForms
                         Nascimento = Convert.ToDateTime(maskedTextBox1.Text),
                         CPF = textoCPF.Text,
                     };
-                    new RepositorioAluno().Add(aluno);
+                    if(new RepositorioAluno().GetByMatricula(aluno.Matricula) == null)
+                    {
+                        new RepositorioAluno().Add(aluno);
+                        MessageBox.Show(aluno.GetHashCode().ToString());
+                    }
+                    else
+                    {
+                        MessageBox.Show("Matricula já cadastrada no sistema. \nInforme uma matricula diferente.");
+                    }
+                    
                 }
 
                 LimparDados();
                 CarregaDadosGridView();
-                edicao = false;
+                AlteraBotoesCampos(edicao = false);
             }
-            catch (FormatException)
-            {
-                MessageBox.Show(("Data Informada é invalida"));
-            }
-            catch(Exception ex)
+            catch (ArgumentNullException ex)
             {
                 MessageBox.Show(ex.Message);
-            }            
+            }
+            catch (ArgumentException ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
 
         private void botaoLimpar_Click(object sender, EventArgs e)
@@ -108,9 +108,22 @@ namespace EM.WindowsForms
 
         private void botaoPesquisa_Click(object sender, EventArgs e)
         {
-            string dados = textoPesquisa.Text;
-            alunoBindingSource.DataSource = new RepositorioAluno().GetByContendoNoNome(dados);
-            gridViewAluno.DataSource = alunoBindingSource;
+
+            bool sucesso = Int32.TryParse(textoPesquisa.Text, out setMatricula);
+
+            if (sucesso)
+            {
+                alunoBindingSource.DataSource = new RepositorioAluno().GetByMatricula(setMatricula);
+                gridViewAluno.DataSource = alunoBindingSource;
+                setMatricula = 0;
+            }
+            else
+            {
+                alunoBindingSource.DataSource = new RepositorioAluno().GetByContendoNoNome(textoPesquisa.Text);
+                gridViewAluno.DataSource = alunoBindingSource;
+            }
+
+            
         }
 
         private void botaoEditar_Click(object sender, EventArgs e)

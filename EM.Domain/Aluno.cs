@@ -14,14 +14,7 @@ namespace EM.Domain
             get => _matricula;
             set
             {                
-                if (value != 0)
-                {
-                    _matricula = value;
-                }
-                else
-                {
-                    throw new Exception("O campo de matricula não pode está em branco ou ser 0");
-                }
+                _matricula = value != 0 ? value : throw new ArgumentNullException("O campo de matricula não pode está em branco ou ser 0");
             }
         }
         public string Nome 
@@ -29,14 +22,7 @@ namespace EM.Domain
             get => _nome;
             set 
             {
-                if (value != "") 
-                {
-                    _nome = value;
-                }
-                else
-                {
-                    throw new Exception("O campo do nome não pode está em branco");
-                }
+                _nome = value != "" ? value : throw new ArgumentNullException("O campo do nome não pode está em branco");
             } 
         }
         public string CPF
@@ -44,25 +30,14 @@ namespace EM.Domain
             get => _cpf;
             set
             {
-                //_cpf = DomainUtilitarios.ValidaCPF(cpf: value) ? value : throw new Exception("CPF não é valido");
-                if (DomainUtilitarios.ValidaCPF(value))
-                {
-                    _cpf = value;
-                }
-                else
-                {
-                    throw new Exception("O CPF informado não é valido");
-                }
+                _cpf = DomainUtilitarios.ValidaCPF(value) ? value : throw new ArgumentException("O CPF informado não é valido");
             }
         }
         public DateTime Nascimento { 
             get => _nascimento; 
             set 
             {
-                if (DomainUtilitarios.ValidaNascimento(value))
-                    _nascimento = value;
-                else
-                    throw new Exception("Data Informada Incorreta");
+                _nascimento = DomainUtilitarios.ValidaNascimento(value) ? value : throw new ArgumentException("Data Informada Incorreta");
             } 
         }
         public EnumeradorSexo Sexo { get; set; }
@@ -80,8 +55,12 @@ namespace EM.Domain
 
         public override int GetHashCode()
         {
-            int hashCode = 17;
-            hashCode *= Matricula.GetHashCode();
+            int hashCode = -1073629611;
+            hashCode = hashCode * -1521134295 + Matricula.GetHashCode();
+            hashCode = hashCode * -1521134295 + EqualityComparer<string>.Default.GetHashCode(Nome);
+            hashCode = hashCode * -1521134295 + EqualityComparer<string>.Default.GetHashCode(CPF);
+            hashCode = hashCode * -1521134295 + Nascimento.GetHashCode();
+            hashCode = hashCode * -1521134295 + Sexo.GetHashCode();
             return hashCode;
         }
 

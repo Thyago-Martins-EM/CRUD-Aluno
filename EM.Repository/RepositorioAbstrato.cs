@@ -25,14 +25,12 @@ namespace EM.Repository
 
         public virtual IEnumerable<T> GetAll()
         {
-            return null;
+            return GetAll();
         }
 
         public virtual IEnumerable<T> Get(Expression<Func<T, bool> > predicate)
         {   
-
             return Get(predicate);
-
         }
         
     }

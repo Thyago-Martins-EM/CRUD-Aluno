@@ -11,10 +11,10 @@ namespace EM.Repository
     {
 
         private Conexao conexao = new Conexao();
+
         public override void Add(Aluno aluno)
         {
             int sexo = aluno.Sexo == EnumeradorSexo.Masculino ? 0 : 1;
-
             using (FbConnection conexaFB = conexao.GetConexao())
             {
                 conexaFB.Open();
@@ -85,9 +85,7 @@ namespace EM.Repository
                      alunos.Add(aluno);
                 }
                 conexaFB.Close();
-                return alunos;
-
-                    
+                return alunos;                    
             }
         }
 
@@ -100,28 +98,12 @@ namespace EM.Repository
 
         public Aluno GetByMatricula(int matricula)
         {
-
-            return Get(aluno => aluno.Matricula == matricula).First();
-
+            return Get(aluno => aluno.Matricula == matricula).FirstOrDefault();
         }
 
         public IEnumerable<Aluno> GetByContendoNoNome(string parteDoNome)
-        {
-            
+        {            
             return Get(aluno => aluno.Nome.ToUpper().Contains(parteDoNome.ToUpper()));
-
-        }
-
-        public void Teste()
-        {
-            List<Aluno> alunos = new List<Aluno>();
-            Func<Aluno, bool> teste2 = ehmatricula01;
-            var teste = alunos.Where(teste2);
-        }
-
-        public bool ehmatricula01(Aluno aluno)
-        {
-            return true;
         }
     }
 }

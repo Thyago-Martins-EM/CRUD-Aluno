@@ -1,1 +1,4 @@
 https://docs.microsoft.com/pt-br/dotnet/api/system.windows.forms.application.setunhandledexceptionmode?view=net-5.0
+https://www.csharp-examples.net/catching-unhandled-exceptions/
+https://riptutorial.com/csharp/example/15940/unhandled-and-thread-exception
+https://docs.microsoft.com/pt-br/dotnet/api/system.windows.forms.application.threadexception?view=net-5.0
