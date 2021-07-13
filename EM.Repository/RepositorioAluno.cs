@@ -18,12 +18,12 @@ namespace EM.Repository
             using (FbConnection conexaFB = conexao.GetConexao())
             {
                 conexaFB.Open();
-                string fSQL = $@"INSERT INTO ALUNO VALUES ({aluno.Matricula}, '{aluno.Nome}', {sexo}, '{aluno.CPF}', '{aluno.Nascimento.ToString("yyyy/MM/dd")}');";
+                string fSQL = $@"INSERT INTO ALUNO VALUES ({aluno.Matricula}, '{aluno.Nome}', {sexo}, '{aluno.CPF}', '{aluno.Nascimento.ToShortDateString()}');";
                 FbCommand cmd = new FbCommand(fSQL, conexaFB);
                 cmd.ExecuteNonQuery();
                 conexaFB.Close();
             }
-        }
+        }          
 
         public override void Update(Aluno aluno)
         {
@@ -31,7 +31,6 @@ namespace EM.Repository
 
             using (FbConnection conexaFB = conexao.GetConexao())
             {
-
                 conexaFB.Open();
                 string fSQL = $"UPDATE ALUNO SET NOME = '{aluno.Nome}', SEXO = {sexo}, CPF = '{aluno.CPF}', NASCIMENTO = '{aluno.Nascimento:yyyy/MM/dd}'" +
                                 $"WHERE MATRICULA = {aluno.Matricula};";
@@ -47,25 +46,21 @@ namespace EM.Repository
 
             using (FbConnection conexaFB = conexao.GetConexao())
             {
-
                 conexaFB.Open();
                 string fSQL = $"DELETE FROM ALUNO WHERE MATRICULA = {aluno.Matricula};";
                 FbCommand cmd = new FbCommand(fSQL, conexaFB);
                 cmd.ExecuteNonQuery();
 
                 conexaFB.Close();
-
             }
         }
 
         public override IEnumerable<Aluno> GetAll()
         {
-
             using (FbConnection conexaFB = conexao.GetConexao())
             {
-
                 conexaFB.Open();
-                string fSQL = $"SELECT * FROM ALUNO;";
+                string fSQL = $"SELECT * FROM ALUNO ORDER BY MATRICULA;";
                 FbCommand cmd = new FbCommand(fSQL, conexaFB);
                 FbDataReader fbData = cmd.ExecuteReader();
                 
@@ -91,7 +86,7 @@ namespace EM.Repository
 
         public override IEnumerable<Aluno> Get(Expression<Func<Aluno, bool>> predicate)
         {
-            var listaAlunos = GetAll().AsQueryable().Where(predicate).ToList();
+            var listaAlunos = GetAll().Where(predicate.Compile()).ToList();
 
             return listaAlunos;
         }

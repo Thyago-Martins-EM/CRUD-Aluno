@@ -48,62 +48,47 @@ namespace EM.WindowsForms
 
         private void botaoAdicionar_Click(object sender, EventArgs e)
         {
-            try
-            {
-                if (edicao)
-                {
-                    Aluno aluno = new Aluno()
-                    {
-                        Matricula = Convert.ToInt32(textoMatricula.Text),
-                        Nome = textoNome.Text.Replace("'", "''"),
-                        Sexo = (EnumeradorSexo)comboGenero.SelectedIndex,
-                        Nascimento = Convert.ToDateTime(maskedTextBox1.Text),
-                        CPF = textoCPF.Text,
-                    };
-                    new RepositorioAluno().Update(aluno);
-                }
 
-                if (!edicao)
+            if (edicao && ValidaCampos())
+            {
+                Aluno aluno = new Aluno()
                 {
-                    Aluno aluno = new Aluno()
-                    {
-                        Matricula = Convert.ToInt32(textoMatricula.Text),
-                        Nome = textoNome.Text.Replace("'", "''"),
-                        Sexo = (EnumeradorSexo)comboGenero.SelectedIndex,
-                        Nascimento = Convert.ToDateTime(maskedTextBox1.Text),
-                        CPF = textoCPF.Text,
-                    };
-                    if(new RepositorioAluno().GetByMatricula(aluno.Matricula) == null)
-                    {
-                        new RepositorioAluno().Add(aluno);
-                        MessageBox.Show(aluno.GetHashCode().ToString());
-                    }
-                    else
-                    {
-                        MessageBox.Show("Matricula já cadastrada no sistema. \nInforme uma matricula diferente.");
-                    }
-                    
-                }
+                    Matricula = Convert.ToInt32(textoMatricula.Text),
+                    Nome = textoNome.Text.Replace("'", "''"),
+                    Sexo = (EnumeradorSexo)comboGenero.SelectedIndex,
+                    Nascimento = Convert.ToDateTime(maskedTextBox1.Text),
+                    CPF = textoCPF.Text,
+                };
+                new RepositorioAluno().Update(aluno);
 
                 LimparDados();
                 CarregaDadosGridView();
                 AlteraBotoesCampos(edicao = false);
             }
-            catch (ArgumentNullException ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
-            catch (ArgumentException ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
+
+            else if(!edicao && ValidaCampos())
+            {                    
+                Aluno aluno = new Aluno()
+                {
+                    Matricula = Convert.ToInt32(textoMatricula.Text),
+                    Nome = textoNome.Text.Replace("'", "''"),
+                    Sexo = (EnumeradorSexo)comboGenero.SelectedIndex,
+                    Nascimento = Convert.ToDateTime(maskedTextBox1.Text),
+                    CPF = textoCPF.Text,
+                };
+
+                new RepositorioAluno().Add(aluno);
+
+                LimparDados();
+                CarregaDadosGridView();
+                AlteraBotoesCampos(edicao = false);
+            }            
         }
 
         private void botaoLimpar_Click(object sender, EventArgs e)
         {
             AlteraBotoesCampos(edicao = false);
             LimparDados();
-            throw new System.InvalidOperationException("Deu Pau...");
         }
 
         private void botaoPesquisa_Click(object sender, EventArgs e)
@@ -122,7 +107,6 @@ namespace EM.WindowsForms
                 alunoBindingSource.DataSource = new RepositorioAluno().GetByContendoNoNome(textoPesquisa.Text);
                 gridViewAluno.DataSource = alunoBindingSource;
             }
-
             
         }
 
@@ -230,6 +214,57 @@ namespace EM.WindowsForms
             maskedTextBox1.Text = Convert.ToString(aluno.Nascimento);
             textoCPF.Text = aluno.CPF;
         }
-    
+
+        private bool ValidaCampos()
+        {
+
+            bool matricula = Int32.TryParse(textoMatricula.Text, out int matriculaAluno);
+            bool nascimento = DateTime.TryParse(maskedTextBox1.Text, out DateTime data);
+
+            //Valida Campo Matricula
+            if (!matricula || matriculaAluno == 0)
+            {
+                MessageBox.Show("O campo Matricula não pode está em branco ou ser 0");
+                textoMatricula.Focus();
+                return false;
+            }
+            //Verifica se Matricula ja existe
+            else if (new RepositorioAluno().GetByMatricula(matriculaAluno) != null)
+            {
+                MessageBox.Show("Já existe um aluno registrado com essa matricula!");
+                textoMatricula.Focus();
+                return false;
+            }
+            //Valida Campo Nome
+            else if (textoNome.Text == "" || textoNome.Text.Length < 3)
+            {
+                MessageBox.Show("O campo Nome não pode está em branco e deve ter mais de 3 letras");
+                textoNome.Focus();
+                return false;
+            }
+            //Valida Campo Sexo
+            else if (comboGenero.SelectedIndex == -1)
+            {
+                MessageBox.Show("Com sexo não selecionado, informe um genero!");
+                comboGenero.Focus();
+                return false;
+            }
+            //Valida Campo Nascimento
+            else if (!nascimento && data < DateTime.Now)
+            {
+                MessageBox.Show("Data invalida");
+                maskedTextBox1.Focus();
+                return false;
+            }
+            //Valida Campo CPF
+            else if (!DomainUtilitarios.ValidaCPF(textoCPF.Text))
+            {
+                MessageBox.Show("Informe um CPF valido!");                
+                textoCPF.Focus();
+                return false;
+            }            
+
+            return true;
+        }
     }
 }

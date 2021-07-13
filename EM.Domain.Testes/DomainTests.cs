@@ -4,7 +4,7 @@ using System;
 namespace EM.Domain.Testes
 {
     [TestFixture]
-    public class AlunoTest
+    public class DomainTests
     {
         Aluno aluno1 = new Aluno() { Matricula = 1, Nome = "Thyago", Sexo = 0, Nascimento = DateTime.Parse("30/09/1990"), CPF = "30494948086" };
         Aluno aluno2 = new Aluno() { Matricula = 1, Nome = "Thyago", Sexo = 0, Nascimento = DateTime.Parse("30/09/1990"), CPF = "30494948086" };
@@ -42,14 +42,6 @@ namespace EM.Domain.Testes
         public bool InformaCpfInvalido(string cpf)
         {
             return DomainUtilitarios.ValidaCPF(cpf);
-        }
-
-        [Test]
-        public void ValidaData()
-        {
-            DateTime data = DateTime.Parse("30/09/2021");
-            var resultado = DomainUtilitarios.ValidaNascimento(data);
-            Assert.AreEqual(false, resultado);
         }
 
         [Test]

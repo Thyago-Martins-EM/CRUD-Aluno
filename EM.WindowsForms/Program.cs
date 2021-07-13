@@ -26,14 +26,12 @@ namespace EM.WindowsForms
 
         static void Application_ThreadException(object sender, ThreadExceptionEventArgs e)
         {
-            MessageBox.Show(e.Exception.Message, "Unhandled Thread Exception");
-            // here you can log the exception ...
+            MessageBox.Show(e.Exception.Message, "Exceção de thread não tratada");
         }
 
         static void CurrentDomain_UnhandledException(object sender, UnhandledExceptionEventArgs e)
         {
-            MessageBox.Show((e.ExceptionObject as Exception).Message, "Unhandled UI Exception");
-            // here you can log the exception ...
+            MessageBox.Show((e.ExceptionObject as Exception).Message, "Exceção de IU não tratada");
         }
     }
 }
