@@ -86,9 +86,9 @@ namespace EM.Repository
 
         public override IEnumerable<Aluno> Get(Expression<Func<Aluno, bool>> predicate)
         {
-            var listaAlunos = GetAll().Where(predicate.Compile()).ToList();
-
-            return listaAlunos;
+            //IEnumerable<Aluno> listaAlunos = GetAll().Where(predicate.Compile());
+            
+            return GetAll().Where(predicate.Compile());
         }
 
         public Aluno GetByMatricula(int matricula)

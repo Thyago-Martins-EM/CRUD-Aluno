@@ -224,7 +224,7 @@ namespace EM.WindowsForms
             //Valida Campo Matricula
             if (!matricula || matriculaAluno == 0)
             {
-                MessageBox.Show("O campo Matricula não pode está em branco ou ser 0");
+                MessageBox.Show("O campo Matricula não pode estar em branco ou ser 0");
                 textoMatricula.Focus();
                 return false;
             }
@@ -238,7 +238,7 @@ namespace EM.WindowsForms
             //Valida Campo Nome
             else if (textoNome.Text == "" || textoNome.Text.Length < 3)
             {
-                MessageBox.Show("O campo Nome não pode está em branco e deve ter mais de 3 letras");
+                MessageBox.Show("O campo Nome não pode estar em branco e deve ter mais de 3 letras");
                 textoNome.Focus();
                 return false;
             }
@@ -252,19 +252,24 @@ namespace EM.WindowsForms
             //Valida Campo Nascimento
             else if (!nascimento && data < DateTime.Now)
             {
-                MessageBox.Show("Data invalida");
+                MessageBox.Show("Data inválida");
                 maskedTextBox1.Focus();
                 return false;
             }
             //Valida Campo CPF
             else if (!DomainUtilitarios.ValidaCPF(textoCPF.Text))
             {
-                MessageBox.Show("Informe um CPF valido!");                
+                MessageBox.Show("Informe um CPF válido!");                
                 textoCPF.Focus();
                 return false;
             }            
 
             return true;
+        }
+
+        private void botaoRelatorio_Click(object sender, EventArgs e)
+        {
+            new Relatorios.RelatorioAlunos().GeraRelAlunos();
         }
     }
 }

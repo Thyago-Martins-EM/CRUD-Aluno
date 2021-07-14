@@ -42,3 +42,6 @@ C:\Users\Thyago\source\repos\EM\EM.WindowsForms\obj\Debug\EM.WindowsForms.exe
 C:\Users\Thyago\source\repos\EM\EM.WindowsForms\obj\Debug\EM.WindowsForms.pdb
 C:\Users\Thyago\source\repos\EM\EM.WindowsForms\obj\Debug\EM.WindowsForms.RemoverAluno.resources
 C:\Users\EM Estagio\source\repos\EM\EM.WindowsForms\obj\Debug\EM.WindowsForms.RemoverAluno.resources
+C:\Users\EM Estagio\source\repos\EM\EM.WindowsForms\bin\Debug\BouncyCastle.Crypto.dll
+C:\Users\EM Estagio\source\repos\EM\EM.WindowsForms\bin\Debug\itextsharp.dll
+C:\Users\EM Estagio\source\repos\EM\EM.WindowsForms\bin\Debug\itextsharp.xml
